@@ -12,7 +12,6 @@ $(target) : boot.bin Makefile
 	# mkdosfs -C -F 12 $@ 2880
 	dd if=/dev/zero of=$@ bs=512 count=2880
 	mkdosfs -F 12 $@ 1440
-	cat $< >! $@
 	dd if=$< of=$@ bs=512 count=1 conv=notrunc
 
 qemu: $(target)
