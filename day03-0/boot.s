@@ -61,9 +61,8 @@ out_loop:
     mov $10, %bx
     div %bx
     mov %ax, %di
-    mov %dx, %ax
-    add $'0', %ax
-    mov %al, (%si)
+    add $'0', %dx
+    mov %dx, (%si)
     add $1, %si
     jmp out_loop
 out_put:
