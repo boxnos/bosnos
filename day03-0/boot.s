@@ -25,15 +25,15 @@
 #  . = . + 18
 
 entry:
-      mov $12345, %di
-      call out
+    mov $12345, %di
+    call out
 
-      movw $0, %ax
-      movw %ax, %ss
-      movw $0x7c00, %sp
-      movw %ax, %ds
-      movw %ax, %es
-      movw $msg, %si
+    movw $0, %ax
+    movw %ax, %ss
+    movw $0x7c00, %sp
+    movw %ax, %ds
+    movw %ax, %es
+    movw $msg, %si
 
 # .byte 0x8e, 0xd8, 0x8e
 
