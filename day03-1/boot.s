@@ -56,6 +56,7 @@ fin:
     hlt
     jmp fin
 
+# %si: string address
 puts:
     movb (%si), %al
     add $1, %si
@@ -70,6 +71,7 @@ puts_end:
     call putchar
     ret
 
+# %al: char
 putchar:
     movb $0x0e, %ah
     movw $15, %bx
@@ -88,6 +90,7 @@ msg:
 
 # for debug
 
+# %di: int
 outl:
     call out
     mov $'\r', %al
@@ -96,6 +99,7 @@ outl:
     call putchar
     ret
 
+# %di: int
 out:
     mov $buf, %si
 out_loop:
