@@ -25,9 +25,6 @@
 #  . = . + 18
 
 entry:
-    mov $12345, %di
-    call outl
-
     movw $0, %ax
     movw %ax, %ss
     movw $0x7c00, %sp
@@ -36,10 +33,10 @@ entry:
 
 #read floppy
     mov $0x820, %ax
-    mov %ax, %es
-    mov $0, %ch
-    mov $0, %dh
-    mov $2, %cl
+    mov %ax, %es    # write from 0x8200
+    mov $0, %ch     # cylinders 0-79
+    mov $0, %dh     # heads     0 or 1
+    mov $2, %cl     # sectors   1-18  1: bootsector
 
 read_loop:
     mov $5, %si
@@ -59,6 +56,7 @@ read_retry:
     int $13
     jmp read_retry
 read_next:
+# read 18 sectors
     mov %es, %ax   # es += 0x20
     add $0x20, %ax # 0x20 = 512 / 16
     mov %ax, %es
@@ -67,11 +65,13 @@ read_next:
     cmp $18, %cl
     jbe read_loop
 
+# read back side of the disk
     mov $1, %cl
     add $1, %dh
     cmp $2, %dh
     jb read_loop
 
+# read cylinders (FIXME: only 10!)
     mov $0, %dh
     add $1, %ch
     cmp $10, %ch
