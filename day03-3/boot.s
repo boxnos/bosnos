@@ -61,7 +61,7 @@ read_retry:
 read_next:
     mov %es, %ax   # es += 0x20
     add $0x20, %ax # 0x20 = 512 / 16
-    mov %es, %ax
+    mov %ax, %es
 
     add $1, %cl
     cmp $18, %cl
