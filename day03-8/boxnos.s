@@ -1,9 +1,9 @@
-.equ CYLS,  0x0ff0
-.equ LEDS,  0x0ff1
-.equ VMODE, 0x0ff2
-.equ SCRNX, 0x0ff4
-.equ SCRNY, 0x0ff6
-.equ VRAM,  0x0ff8
+.set CYLS,  0x0ff0
+.set LEDS,  0x0ff1
+.set VMODE, 0x0ff2
+.set SCRNX, 0x0ff4
+.set SCRNY, 0x0ff6
+.set VRAM,  0x0ff8
 
 # black out
     mov $13, %al
